@@ -1,902 +1,887 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stoxify - India's First Real-Time Trade Idea Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2563eb;
+            --light-blue: #3b82f6;
+            --accent-blue: #1e40af;
+            --bg-blue: #eff6ff;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "📈";
+            font-size: 1.5rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-blue) 0%, var(--white) 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"&gt;&lt;circle cx="20" cy="20" r="2" fill="%232563eb" opacity="0.1"/&gt;&lt;circle cx="80" cy="40" r="1" fill="%233b82f6" opacity="0.2"/&gt;&lt;circle cx="40" cy="80" r="1.5" fill="%232563eb" opacity="0.15"/&gt;&lt;/svg&gt;');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-taglines {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tagline-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .tagline-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--bg-blue);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: var(--white);
+            border-radius: 8px;
+        }
+
+        .benefit-icon {
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Marketplace Section */
+        .marketplace {
+            background: var(--bg-blue);
+        }
+
+        .marketplace-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .marketplace-feature {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+        }
+
+        .marketplace-feature h4 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .dashboard-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.1);
+        }
+
+        .dashboard-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dashboard-content {
+            padding: 30px;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: var(--white);
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .comparison-table th {
+            background: var(--gradient);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .comparison-table th:first-child {
+            background: var(--accent-blue);
+        }
+
+        .check-mark {
+            color: #10b981;
+            font-size: 1.2rem;
+        }
+
+        .cross-mark {
+            color: #ef4444;
+            font-size: 1.2rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--bg-blue);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-blue);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .rating {
+            color: #fbbf24;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: var(--gradient);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .btn-white:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        .trust-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-taglines {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-preview {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content > * {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Stoxify - India's First Real-Time Trade Idea Platform&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>* {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--primary-blue: #2563eb;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--light-blue: #3b82f6;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--accent-blue: #1e40af;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--bg-blue: #eff6ff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--text-dark: #1e293b;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--text-gray: #64748b;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--white: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-dark);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1200px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Header */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.header-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-blue);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo::before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: "📈";</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-buttons {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 24px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-primary {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--gradient);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-primary:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-secondary {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-blue);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid var(--primary-blue);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-secondary:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--primary-blue);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Hero Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, var(--bg-blue) 0%, var(--white) 100%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 120px 0 80px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero::before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>right: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>bottom: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: url('data:image/svg+xml,&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"&gt;&lt;circle cx="20" cy="20" r="2" fill="%232563eb" opacity="0.1"/&gt;&lt;circle cx="80" cy="40" r="1" fill="%233b82f6" opacity="0.2"/&gt;&lt;circle cx="40" cy="80" r="1.5" fill="%232563eb" opacity="0.15"/&gt;&lt;/svg&gt;');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero h1 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 3.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-dark);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.2;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero .subtitle {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-gray);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-ctas {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-taglines {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: 1fr 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tagline-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tagline-card h3 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-blue);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Section Styling */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.section {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 80px 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.section-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-dark);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.section-subtitle {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-gray);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* How It Works */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.how-it-works {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--bg-blue);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.steps-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-number {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 60px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 60px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--gradient);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.step-card h3 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-dark);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.benefits-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.benefit-item {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: flex-start;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.benefit-icon {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Features Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.features-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.feature-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.feature-card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 12px 40px rgba(37, 99, 235, 0.15);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.feature-icon {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.feature-card h3 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-dark);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Marketplace Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.marketplace {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--bg-blue);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.marketplace-features {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 25px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.marketplace-feature {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 25px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.marketplace-feature h4 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-blue);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Dashboard Preview */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.dashboard-preview {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: 1fr 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.dashboard-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 12px 40px rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.dashboard-header {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--gradient);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.dashboard-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 200px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Comparison Table */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.comparison-section {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.comparison-table {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.comparison-table table {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-collapse: collapse;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.comparison-table th,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.comparison-table td {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.comparison-table th {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--gradient);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.comparison-table th:first-child {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--accent-blue);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.check-mark {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #10b981;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cross-mark {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ef4444;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Testimonials */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.testimonials {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--bg-blue);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.testimonials-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.testimonial-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.testimonial-card::before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: '"';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 4rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-blue);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.3;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.testimonial-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-style: italic;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-gray);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.testimonial-author {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.author-avatar {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--gradient);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.author-info h4 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-dark);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.rating {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fbbf24;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Final CTA */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.final-cta {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--gradient);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.final-cta h2 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.final-cta p {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.9;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta-buttons {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-white {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: var(--white);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-blue);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-white:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f8fafc;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.trust-indicators {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.trust-item {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.9;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Responsive Design */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 768px) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.hero h1 {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>font-size: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>.hero-taglines {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>grid-template-columns: 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>.dashboard-preview {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>grid-template-columns: 1fr;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>.hero-ctas {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>.cta-buttons {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Animations */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeInUp {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>from {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>transform: translateY(30px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>to {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>opacity: 1;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>transform: translateY(0);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-content &gt; * {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeInUp 0.8s ease forwards;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.floating-icon {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: float 3s ease-in-out infinite;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes float {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>0%, 100% { transform: translateY(0px); }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>50% { transform: translateY(-10px); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Header --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="header-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="logo"&gt;Stoxify&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="nav-buttons"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#traders" class="btn btn-secondary"&gt;For Traders&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#advisors" class="btn btn-primary"&gt;For Advisors&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Hero Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="hero"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hero-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h1&gt;India's First Real-Time&lt;br&gt;Trade Idea Platform&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="subtitle"&gt;Connect with SEBI-registered research analysts for verified, timestamped trade ideas. Execute trades instantly with complete transparency and compliance.&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hero-ctas"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="btn btn-primary"&gt;🚀 Start Trading Smarter&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="btn btn-secondary"&gt;💼 Become an Advisor&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hero-taglines"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="tagline-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3&gt;📱 For Traders&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p&gt;Get verified trade ideas from top analysts. Execute instantly.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="tagline-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3&gt;📊 For Advisors&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p&gt;Monetize your research. Build your client base. Stay compliant.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- How It Works - Traders --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="section how-it-works" id="traders"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="section-title"&gt;How It Works - For Traders&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="section-subtitle"&gt;Simple. Transparent. Profitable.&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="steps-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="step-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-number"&gt;1&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;🔍 Browse &amp; Subscribe&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Discover SEBI-registered analysts in our verified marketplace. View their track records, success rates, and subscription prices. Choose advisors that match your trading style.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="step-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-number"&gt;2&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;⚡ Receive Real-Time Alerts&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Get instant trade ideas via app notifications and WhatsApp. Every trade comes with entry price, target, stop-loss, and timestamp verification through NSE API.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="step-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-number"&gt;3&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;🎯 Execute with One Click&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Connect your broker account for seamless trade execution. No more manual entries or missed opportunities.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="benefits-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;📲&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;Live trade alerts&lt;/strong&gt; with precise entry/exit points</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;✅&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;Verified performance history&lt;/strong&gt; of every analyst</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;🛡️&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;Risk management&lt;/strong&gt; with stop-loss recommendations</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;💬&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;WhatsApp notifications&lt;/strong&gt; for urgent trades</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;📈&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;Complete trade history&lt;/strong&gt; and P&amp;L tracking</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;⚡&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;One-click execution&lt;/strong&gt; via broker APIs</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- How It Works - Advisors --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="section" id="advisors"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="section-title"&gt;How It Works - For Advisors&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="section-subtitle"&gt;Turn Your Research Into Revenue&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="steps-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="step-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-number"&gt;📤&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;Push Trade Ideas Instantly&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Share your research with subscribers through our secure platform. Every trade idea gets timestamped and verified through NSE API integration.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="step-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-number"&gt;💰&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;Earn Recurring Revenue&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Set your subscription prices and earn monthly recurring income. Our transparent fee structure helps you build a sustainable advisory business.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="step-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="step-number"&gt;🔒&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;Stay Fully Compliant&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Maintain SEBI compliance effortlessly. We ensure you never access client portfolios or funds - only provide research and recommendations.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="benefits-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;💵&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;Monthly subscription revenue&lt;/strong&gt; from followers</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;⚖️&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;Built-in compliance framework&lt;/strong&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;📊&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;Performance tracking&lt;/strong&gt; and verification</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;👥&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;Client acquisition&lt;/strong&gt; through our marketplace</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;🛡️&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;No liability&lt;/strong&gt; for client fund management</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="benefit-item"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="benefit-icon"&gt;⭐&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;strong&gt;Transparent rating system&lt;/strong&gt; builds trust</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Key Features --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="section" style="background: var(--bg-blue);"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="section-title"&gt;Key Features&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="section-subtitle"&gt;Everything you need for smart trading&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="features-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="feature-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="feature-icon floating-icon"&gt;🚀&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;Real-Time Trade Updates&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Get instant notifications the moment your chosen analysts share new trade ideas&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="feature-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="feature-icon floating-icon"&gt;⏱️&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;Timestamped Verification&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Every trade idea is timestamped and verified through NSE API for complete transparency&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="feature-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="feature-icon floating-icon"&gt;🎯&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;One-Click Execution&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Connect your broker account and execute trades instantly without manual intervention&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="feature-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="feature-icon floating-icon"&gt;💰&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;Subscription Revenue&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Advisors earn recurring monthly income while traders access premium research&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="feature-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="feature-icon floating-icon"&gt;🔒&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;Secure &amp; Compliant&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;SEBI-compliant platform ensuring advisors never access client funds or portfolios&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="feature-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="feature-icon floating-icon"&gt;📱&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3&gt;WhatsApp Integration&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Never miss a trade with instant WhatsApp alerts for time-sensitive opportunities&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Marketplace --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="section marketplace"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="section-title"&gt;Marketplace - Discover Top Analysts&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="section-subtitle"&gt;Find Your Perfect Trading Partner&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem;"&gt;Our marketplace connects you with India's top SEBI-registered research analysts. Every profile is verified and transparent.&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="marketplace-features"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="marketplace-feature"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4&gt;📊 Browse by Performance&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Filter analysts by success rate, average returns, and risk levels&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="marketplace-feature"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4&gt;📈 Compare Track Records&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;View complete trading history with verified timestamps&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="marketplace-feature"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4&gt;💳 Flexible Subscriptions&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Choose monthly plans that fit your budget&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="marketplace-feature"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4&gt;⭐ Read Reviews&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;See what other traders say about each analyst's performance&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="marketplace-feature"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4&gt;✅ Verified Credentials&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;SEBI registration and analyst credentials verified&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="marketplace-feature"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4&gt;🆓 Free Trials&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;Test analyst performance with trial periods&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="dashboard-preview"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="dashboard-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="dashboard-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3&gt;📱 Trader Dashboard&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="dashboard-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4&gt;Your Trading Command Center&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p&gt;View active trades, track P&amp;L, manage subscriptions, and execute orders with one click&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="dashboard-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="dashboard-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3&gt;💼 Advisor Dashboard&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="dashboard-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4&gt;Grow Your Advisory Business&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p&gt;Manage subscribers, track performance metrics, and build your reputation in the marketplace&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Comparison Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="section comparison-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="section-title"&gt;Why Choose Stoxify?&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="section-subtitle"&gt;The Smart Alternative to Traditional Advisory&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="comparison-table"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;Features&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;Stoxify&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;Telegram/WhatsApp&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;th&gt;Traditional Advisory&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;strong&gt;SEBI-verified analysts&lt;/strong&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="check-mark"&gt;✅&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="cross-mark"&gt;❌&lt;/span&gt; Unverified tipsters&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="check-mark"&gt;✅&lt;/span&gt; Regulated but limited&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;strong&gt;Timestamped trade proof&lt;/strong&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="check-mark"&gt;✅&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="cross-mark"&gt;❌&lt;/span&gt; No accountability&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="cross-mark"&gt;❌&lt;/span&gt; No real-time tracking&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;strong&gt;One-click execution&lt;/strong&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="check-mark"&gt;✅&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="cross-mark"&gt;❌&lt;/span&gt; Manual copying&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="cross-mark"&gt;❌&lt;/span&gt; Phone-based orders&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;strong&gt;Transparent track records&lt;/strong&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="check-mark"&gt;✅&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="cross-mark"&gt;❌&lt;/span&gt; Cherry-picked results&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="cross-mark"&gt;❌&lt;/span&gt; Limited transparency&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;strong&gt;Subscription flexibility&lt;/strong&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="check-mark"&gt;✅&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="cross-mark"&gt;❌&lt;/span&gt; Free but unreliable&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;&lt;span class="cross-mark"&gt;❌&lt;/span&gt; High</p>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Stoxify</div>
+                <div class="nav-buttons">
+                    <a href="#traders" class="btn btn-secondary">For Traders</a>
+                    <a href="#advisors" class="btn btn-primary">For Advisors</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>India's First Real-Time<br>Trade Idea Platform</h1>
+                <p class="subtitle">Connect with SEBI-registered research analysts for verified, timestamped trade ideas. Execute trades instantly with complete transparency and compliance.</p>
+                
+                <div class="hero-ctas">
+                    <a href="#" class="btn btn-primary">🚀 Start Trading Smarter</a>
+                    <a href="#" class="btn btn-secondary">💼 Become an Advisor</a>
+                </div>
+
+                <div class="hero-taglines">
+                    <div class="tagline-card">
+                        <h3>📱 For Traders</h3>
+                        <p>Get verified trade ideas from top analysts. Execute instantly.</p>
+                    </div>
+                    <div class="tagline-card">
+                        <h3>📊 For Advisors</h3>
+                        <p>Monetize your research. Build your client base. Stay compliant.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section how-it-works" id="traders">
+        <div class="container">
+            <h2 class="section-title">How It Works - For Traders</h2>
+            <p class="section-subtitle">Simple. Transparent. Profitable.</p>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>🔍 Browse & Subscribe</h3>
+                    <p>Discover SEBI-registered analysts in our verified marketplace. View their track records, success rates, and subscription prices. Choose advisors that match your trading style.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>⚡ Receive Real-Time Alerts</h3>
+                    <p>Get instant trade ideas via app notifications and WhatsApp. Every trade comes with entry price, target, stop-loss, and timestamp verification through NSE API.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>🎯 Execute with One Click</h3>
+                    <p>Connect your broker account for seamless trade execution. No more manual entries or missed opportunities.</p>
+                </div>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-icon">📲</span>
+                    <div>
+                        <strong>Live trade alerts</strong> with precise entry/exit points
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✅</span>
+                    <div>
+                        <strong>Verified performance history</strong> of every analyst
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🛡️</span>
+                    <div>
+                        <strong>Risk management</strong> with stop-loss recommendations
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">💬</span>
+                    <div>
+                        <strong>WhatsApp notifications</strong> for urgent trades
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">📈</span>
+                    <div>
+                        <strong>Complete trade history</strong> and P&L tracking
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">⚡</span>
+                    <div>
+                        <strong>One-click execution</strong> via broker APIs
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="advisors">
+        <div class="container">
+            <h2 class="section-title">How It Works - For Advisors</h2>
+            <p class="section-subtitle">Turn Your Research Into Revenue</p>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">📤</div>
+                    <h3>Push Trade Ideas Instantly</h3>
+                    <p>Share your research with subscribers through our secure platform. Every trade idea gets timestamped and verified through NSE API integration.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">💰</div>
+                    <h3>Earn Recurring Revenue</h3>
+                    <p>Set your subscription prices and earn monthly recurring income. Our transparent fee structure helps you build a sustainable advisory business.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">🔒</div>
+                    <h3>Stay Fully Compliant</h3>
+                    <p>Maintain SEBI compliance effortlessly. We ensure you never access client portfolios or funds - only provide research and recommendations.</p>
+                </div>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-icon">💵</span>
+                    <div>
+                        <strong>Monthly subscription revenue</strong> from followers
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">⚖️</span>
+                    <div>
+                        <strong>Built-in compliance framework</strong>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">📊</span>
+                    <div>
+                        <strong>Performance tracking</strong> and verification
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">👥</span>
+                    <div>
+                        <strong>Client acquisition</strong> through our marketplace
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🛡️</span>
+                    <div>
+                        <strong>No liability</strong> for client fund management
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">⭐</span>
+                    <div>
+                        <strong>Transparent rating system</strong> builds trust
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-blue);">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <p class="section-subtitle">Everything you need for smart trading</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon floating-icon">🚀</span>
+                    <h3>Real-Time Trade Updates</h3>
+                    <p>Get instant notifications the moment your chosen analysts share new trade ideas</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon floating-icon">⏱️</span>
+                    <h3>Timestamped Verification</h3>
+                    <p>Every trade idea is timestamped and verified through NSE API for complete transparency</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon floating-icon">🎯</span>
+                    <h3>One-Click Execution</h3>
+                    <p>Connect your broker account and execute trades instantly without manual intervention</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon floating-icon">💰</span>
+                    <h3>Subscription Revenue</h3>
+                    <p>Advisors earn recurring monthly income while traders access premium research</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon floating-icon">🔒</span>
+                    <h3>Secure & Compliant</h3>
+                    <p>SEBI-compliant platform ensuring advisors never access client funds or portfolios</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon floating-icon">📱</span>
+                    <h3>WhatsApp Integration</h3>
+                    <p>Never miss a trade with instant WhatsApp alerts for time-sensitive opportunities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section marketplace">
+        <div class="container">
+            <h2 class="section-title">Marketplace - Discover Top Analysts</h2>
+            <p class="section-subtitle">Find Your Perfect Trading Partner</p>
+            
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem;">Our marketplace connects you with India's top SEBI-registered research analysts. Every profile is verified and transparent.</p>
+            
+            <div class="marketplace-features">
+                <div class="marketplace-feature">
+                    <h4>📊 Browse by Performance</h4>
+                    <p>Filter analysts by success rate, average returns, and risk levels</p>
+                </div>
+                <div class="marketplace-feature">
+                    <h4>📈 Compare Track Records</h4>
+                    <p>View complete trading history with verified timestamps</p>
+                </div>
+                <div class="marketplace-feature">
+                    <h4>💳 Flexible Subscriptions</h4>
+                    <p>Choose monthly plans that fit your budget</p>
+                </div>
+                <div class="marketplace-feature">
+                    <h4>⭐ Read Reviews</h4>
+                    <p>See what other traders say about each analyst's performance</p>
+                </div>
+                <div class="marketplace-feature">
+                    <h4>✅ Verified Credentials</h4>
+                    <p>SEBI registration and analyst credentials verified</p>
+                </div>
+                <div class="marketplace-feature">
+                    <h4>🆓 Free Trials</h4>
+                    <p>Test analyst performance with trial periods</p>
+                </div>
+            </div>
+
+            <div class="dashboard-preview">
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <h3>📱 Trader Dashboard</h3>
+                    </div>
+                    <div class="dashboard-content">
+                        <h4>Your Trading Command Center</h4>
+                        <p>View active trades, track P&L, manage subscriptions, and execute orders with one click</p>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <h3>💼 Advisor Dashboard</h3>
+                    </div>
+                    <div class="dashboard-content">
+                        <h4>Grow Your Advisory Business</h4>
+                        <p>Manage subscribers, track performance metrics, and build your reputation in the marketplace</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section comparison-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Stoxify?</h2>
+            <p class="section-subtitle">The Smart Alternative to Traditional Advisory</p>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Stoxify</th>
+                            <th>Telegram/WhatsApp</th>
+                            <th>Traditional Advisory</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SEBI-verified analysts</strong></td>
+                            <td><span class="check-mark">✅</span></td>
+                            <td><span class="cross-mark">❌</span> Unverified tipsters</td>
+                            <td><span class="check-mark">✅</span> Regulated but limited</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Timestamped trade proof</strong></td>
+                            <td><span class="check-mark">✅</span></td>
+                            <td><span class="cross-mark">❌</span> No accountability</td>
+                            <td><span class="cross-mark">❌</span> No real-time tracking</td>
+                        </tr>
+                        <tr>
+                            <td><strong>One-click execution</strong></td>
+                            <td><span class="check-mark">✅</span></td>
+                            <td><span class="cross-mark">❌</span> Manual copying</td>
+                            <td><span class="cross-mark">❌</span> Phone-based orders</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transparent track records</strong></td>
+                            <td><span class="check-mark">✅</span></td>
+                            <td><span class="cross-mark">❌</span> Cherry-picked results</td>
+                            <td><span class="cross-mark">❌</span> Limited transparency</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Subscription flexibility</strong></td>
+                            <td><span class="check-mark">✅</span></td>
+                            <td><span class="cross-mark">❌</span> Free but unreliable</td>
+                            <td><span class="cross-mark">❌</span> High fees, long-term lock-in</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
